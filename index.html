@@ -5,33 +5,61 @@
   <title>나의 온라인 동화책</title>
   <style>
     body { background: linear-gradient(120deg, #f9e7fe 0%, #e7f0fe 100%); font-family: 'Segoe UI', 'Malgun Gothic', Arial, sans-serif; margin: 0; min-height: 100vh;}
-    #storybook { max-width: 430px; margin: 40px auto; background: #fff8fc; border-radius: 20px; box-shadow: 0 6px 24px rgba(100,50,150,0.08); padding: 30px; text-align: center;}
-    img { width: 100%; margin: 14px 0; border-radius: 12px; }
+    #storybook {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff8fc;
+      border-radius: 20px;
+      box-shadow: 0 6px 24px rgba(100,50,150,0.08);
+      padding: 40px 50px;
+      text-align: center;
+      min-width: 350px;
+    }
+    img {
+      width: 100%;
+      max-width: 700px;
+      margin: 18px 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 14px rgba(80,60,120,0.08);
+    }
     .nav-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 18px 0 0 0;
+      margin: 28px 0 0 0;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .nav-btn { 
-      padding: 8px 18px; border-radius: 6px; border: none; 
-      background: #c4b7fa; color: #222; font-size: 1em; cursor: pointer;
-      min-width: 70px;
+    .nav-btn {
+      padding: 12px 32px;
+      border-radius: 7px;
+      border: none;
+      background: #c4b7fa;
+      color: #222;
+      font-size: 1.18em;
+      cursor: pointer;
+      min-width: 90px;
+      font-weight: 600;
+      transition: background 0.15s;
     }
     .nav-btn:disabled { background: #e1e1e1; color: #aaa; cursor: not-allowed;}
     .center-nav {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       flex: 1;
-      gap: 6px;
+      text-align: center;
+      font-size: 1.1em;
+      color: #666;
+      font-weight: 500;
+      letter-spacing: 0.3px;
     }
-    #pageInfo { color: #666; font-size: 1em; }
-    .gotoForm { display: flex; align-items: center; gap: 6px;}
-    .gotoForm input[type="number"] { width: 56px; padding: 6px; border-radius: 5px; border: 1px solid #ccc; font-size: 1em;}
-    .gotoForm button { padding: 6px 14px; border-radius: 6px; border: none; background: #b5a7ee; color: #222; font-size: 1em; cursor: pointer;}
-    h1 { font-size: 1.6em; margin-bottom: 20px; }
+    h1 { font-size: 2.1em; margin-bottom: 20px; }
     h2 { margin-bottom: 10px; }
+    #title { font-size: 1.3em; font-weight: bold; }
+    #text { font-size: 1.14em; margin-bottom: 18px; }
+    @media (max-width: 950px) {
+      #storybook { max-width: 99vw; padding: 10vw 2vw; }
+      img, .nav-row { max-width: 95vw; }
+    }
   </style>
 </head>
 <body>
@@ -42,31 +70,21 @@
     <img id="image" style="display:none;" alt="동화책 그림" />
     <div class="nav-row">
       <button id="prev" class="nav-btn">이전</button>
-      <div class="center-nav">
-        <div id="pageInfo"></div>
-        <form id="gotoForm" class="gotoForm">
-          <label for="gotoPage" style="font-size:0.97em; color:#444;">페이지</label>
-          <input type="number" id="gotoPage" min="1" max="7" placeholder="번호">
-          <button type="submit">이동</button>
-        </form>
-      </div>
+      <div class="center-nav" id="pageInfo"></div>
       <button id="next" class="nav-btn">다음</button>
     </div>
   </div>
-
   <script>
     const pages = [
-      { title: "1장. 숲속의 아침", text: "토끼가 숲속에서 아침을 맞이했어요.", image: "page.1.jpg" },
-      { title: "2장. 친구를 만나다", text: "토끼는 다람쥐를 만났어요.", image: "page.2.jpg" },
-      { title: "3장. 함께 뛰어놀기", text: "토끼와 다람쥐는 들판에서 뛰어놀았어요.", image: "page.3.jpg" },
-      { title: "4장. 숨바꼭질", text: "친구들과 숨바꼭질을 했어요.", image: "page.4.jpg" },
-      { title: "5장. 맛있는 점심", text: "모두 함께 맛있는 점심을 먹었어요.", image: "page.5.jpg" },
-      { title: "6장. 노래 부르기", text: "손을 잡고 노래를 불렀어요.", image: "page.6.jpg" },
-      { title: "7장. 행복한 하루의 끝", text: "즐거운 하루를 보내고 집으로 돌아갔어요.", image: "page.7.jpg" }
+      { title: "1장. 숲속의 아침", image: "page.1.jpg", text: "토끼가 숲속에서 아침을 맞이했어요." },
+      { title: "2장. 친구를 만나다", image: "page.2.jpg", text: "토끼는 다람쥐를 만났어요." },
+      { title: "3장. 함께 뛰어놀기", image: "page.3.jpg", text: "토끼와 다람쥐는 들판에서 뛰어놀았어요." },
+      { title: "4장. 숨바꼭질", image: "page.4.jpg", text: "친구들과 숨바꼭질을 했어요." },
+      { title: "5장. 맛있는 점심", image: "page.5.jpg", text: "모두 함께 맛있는 점심을 먹었어요." },
+      { title: "6장. 노래 부르기", image: "page.6.jpg", text: "손을 잡고 노래를 불렀어요." },
+      { title: "7장. 행복한 하루의 끝", image: "page.7.jpg", text: "즐거운 하루를 보내고 집으로 돌아갔어요." }
     ];
-
     let currentPage = 0;
-
     function renderPage(page) {
       document.getElementById("title").textContent = pages[page].title;
       document.getElementById("text").textContent = pages[page].text;
@@ -81,31 +99,18 @@
       document.getElementById("prev").disabled = (page === 0);
       document.getElementById("next").disabled = (page === pages.length - 1);
     }
-
     document.getElementById("prev").onclick = () => {
       if (currentPage > 0) {
         currentPage--;
         renderPage(currentPage);
       }
     };
-
     document.getElementById("next").onclick = () => {
       if (currentPage < pages.length - 1) {
         currentPage++;
         renderPage(currentPage);
       }
     };
-
-    document.getElementById("gotoForm").onsubmit = (e) => {
-      e.preventDefault();
-      const val = document.getElementById("gotoPage").value;
-      const num = parseInt(val, 10) - 1;
-      if (num >= 0 && num < pages.length) {
-        currentPage = num;
-        renderPage(currentPage);
-      }
-    };
-
     // 첫 페이지 렌더링
     renderPage(currentPage);
   </script>
