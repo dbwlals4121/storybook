@@ -86,12 +86,23 @@
     const pages = [
       { text: "화창한 오후, 5명의 친구들이 놀이터에서 즐겁게 놀고 있었어요.", image: "page.1.jpg" },
       { text: "지완이와 서연이는 미끄럼틀을 타고, 지민이와 진혁이는 신나게 그네를 타며 웃음꽃을 피웠어요.", image: "page.1.jpg" },
-      { text: "", image: "page.2.jpg" },
-      { text: "", image: "page.3.jpg" },
-      { text: "", image: "page.4.jpg" },
-      { text: "", image: "page.5.jpg" },
-      { text: ".", image: "page.6.jpg" },
-      { text: ".", image: "page.7.jpg" }
+      { text: "그때, 번쩍! 하고 마법사가 나타났어요.", image: "page.2.jpg" },
+      { text: "마법사는 큰 목소리로 말했어요.", image: "page.2.jpg" },
+      { text: "아이들은 행복한 고민에 빠졌어요.", image: "page.3.jpg" },
+      { text: "친구들은 고민했어요", image: "page.3.jpg" },
+      { text: "그떄 지완이가 말했어요.", image: "page.4.jpg" },
+      { image: "page.5.jpg", text: "지완이는 망설였어요." },
+      { text: "서연이가 말했어요.", image: "page.6.jpg" },
+      { image: "page.7.jpg", text: "서연이는 망설였어요." },
+      { text: "지민이가 말했어요.", image: "page.8.jpg" },
+      { image: "page.9.jpg", text: "지민이는 망설였어요." },
+      { text: "진혁이가 말했어요.", image: "page.10.jpg" },
+      { image: "page.11.jpg", text: "진혁이는 망설였어요." },
+      { text: "아이들은 고민에 빠졌어요.", image: "page.12.jpg", text: "소원이 이뤄진다면 정말 행복할텐데 . . . 하지만 그 모든 것을 다 포기해야 한다고?" },
+      { text: "마법사가 말했어요.", image: "page.13.jpg" },
+      { text: "아이들은 오랜 고민 끝에 말했어요.", image: "page.14.jpg" },
+      { text: "정말? 아쉽지 않겠어?", image: "page.15.jpg" },
+      { image: "page.16.jpg", text: "마법사는 고개를 끄덕이며 사라졌어요." },
     ];
     let currentPage = 0;
     function renderPage(page) {
@@ -119,7 +130,6 @@
         renderPage(currentPage);
       }
     };
-    // 첫 페이지 렌더링
     renderPage(currentPage);
   </script>
 </body>
