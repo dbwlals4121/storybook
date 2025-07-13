@@ -15,10 +15,19 @@
       text-align: center;
       min-width: 350px;
     }
-    img {
+    .storybook-img-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
-      max-width: 700px;
       margin: 18px 0;
+    }
+    img {
+      display: block;
+      max-width: 360px;   /* 사진 크기만 줄임 */
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
       border-radius: 12px;
       box-shadow: 0 2px 14px rgba(80,60,120,0.08);
     }
@@ -58,7 +67,7 @@
     #text { font-size: 1.14em; margin-bottom: 18px; }
     @media (max-width: 950px) {
       #storybook { max-width: 99vw; padding: 10vw 2vw; }
-      img, .nav-row { max-width: 95vw; }
+      .nav-row { max-width: 95vw; }
     }
   </style>
 </head>
@@ -67,7 +76,9 @@
     <h1>나의 온라인 동화책</h1>
     <h2 id="title"></h2>
     <p id="text"></p>
-    <img id="image" style="display:none;" alt="동화책 그림" />
+    <div class="storybook-img-wrap">
+      <img id="image" style="display:none;" alt="동화책 그림" />
+    </div>
     <div class="nav-row">
       <button id="prev" class="nav-btn">이전</button>
       <div class="center-nav" id="pageInfo"></div>
@@ -76,13 +87,13 @@
   </div>
   <script>
     const pages = [
-      { title: "1장. 숲속의 아침", image: "page.1.jpg", text: "토끼가 숲속에서 아침을 맞이했어요." },
-      { title: "2장. 친구를 만나다", image: "page.2.jpg", text: "토끼는 다람쥐를 만났어요." },
-      { title: "3장. 함께 뛰어놀기", image: "page.3.jpg", text: "토끼와 다람쥐는 들판에서 뛰어놀았어요." },
-      { title: "4장. 숨바꼭질", image: "page.4.jpg", text: "친구들과 숨바꼭질을 했어요." },
-      { title: "5장. 맛있는 점심", image: "page.5.jpg", text: "모두 함께 맛있는 점심을 먹었어요." },
-      { title: "6장. 노래 부르기", image: "page.6.jpg", text: "손을 잡고 노래를 불렀어요." },
-      { title: "7장. 행복한 하루의 끝", image: "page.7.jpg", text: "즐거운 하루를 보내고 집으로 돌아갔어요." }
+      { title: "1장. 숲속의 아침", text: "토끼가 숲속에서 아침을 맞이했어요.", image: "page.1.jpg" },
+      { title: "2장. 친구를 만나다", text: "토끼는 다람쥐를 만났어요.", image: "page.2.jpg" },
+      { title: "3장. 함께 뛰어놀기", text: "토끼와 다람쥐는 들판에서 뛰어놀았어요.", image: "page.3.jpg" },
+      { title: "4장. 숨바꼭질", text: "친구들과 숨바꼭질을 했어요.", image: "page.4.jpg" },
+      { title: "5장. 맛있는 점심", text: "모두 함께 맛있는 점심을 먹었어요.", image: "page.5.jpg" },
+      { title: "6장. 노래 부르기", text: "손을 잡고 노래를 불렀어요.", image: "page.6.jpg" },
+      { title: "7장. 행복한 하루의 끝", text: "즐거운 하루를 보내고 집으로 돌아갔어요.", image: "page.7.jpg" }
     ];
     let currentPage = 0;
     function renderPage(page) {
